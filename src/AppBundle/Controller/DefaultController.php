@@ -12,7 +12,6 @@ use Symfony\Component\HttpFoundation\Response;
 class DefaultController extends Controller
 {
     /**
-	*apagar
      * @Route("/", name="homepage")
      */
     public function indexAction(){
