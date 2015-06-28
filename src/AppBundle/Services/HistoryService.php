@@ -9,16 +9,16 @@
 namespace AppBundle\Services;
 
 use AppBundle\Document\History;
+use AppBundle\Document\HistoryPart;
 
 class HistoryService{
 
-    private $dm;
+    private $doctrine;
     public function __construct($dm){
-        $this->dm = $dm;
+        $this->doctrine = $dm;
     }
 
     /**
-     * sets name and text
      * @param $historyData
      * @return \AppBundle\Document\id
      */
@@ -27,14 +27,25 @@ class HistoryService{
         $history->setName($historyData['name']);
         $history->setText($historyData['text']);
 
-        $this->dm->persist($history);
-        $this->dm->flush();
+        $this->doctrine->persist($history);
+        $this->doctrine->flush();
 
         return $history->getId();
     }
 
     public function addTextToHistory($historyData){
 
+        $part = new HistoryPart();
+        $part->setText($historyData['text']);
+        $part->setUser("123");
+
+        $this->doctrine->persist($part);
+
+        $history = $this->doctrine->getRepository('AppBundle:History')->find($historyData['historyId']);
+
+        $history->addPart($part);
+
+        $this->doctrine->flush();
     }
 
 }
