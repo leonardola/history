@@ -1,20 +1,22 @@
-history
+History
 =======
 
 A Symfony project created on June 24, 2015, 12:32 am.
+
+Inicie uma historia e deixe seus amigos terminarem
 
 Testes
 =======
 Para rodar os testes basta usar:
 
-# roda todos os testes da aplicação
+roda todos os testes da aplicação
 $ phpunit -c app
 
-# roda todos os testes da pasta Unit
+roda todos os testes da pasta Unit
 $ phpunit -c app src/AppBundle/Tests/Unit
 
-# roda todos os testes do controller history
+roda todos os testes do controller history
 $ phpunit -c app src/AppBundle/Tests/Controller/HistoryControllerTest.php
 
-# run all tests for the entire Bundle
+run all tests for the entire Bundle
 $ phpunit -c app src/AppBundle/
