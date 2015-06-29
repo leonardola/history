@@ -17,7 +17,6 @@ class LibHistory extends LibBase{
             'name'=> "texto de teste",
             'text'=> "isto é um texto de teste"
         ));
-
         parent::assertResponse("Erro ao criar nova historia");
 
         return self::getResponseData()['historyId'];
@@ -29,7 +28,16 @@ class LibHistory extends LibBase{
             'text'=> 'e pode ser removido',
             'historyId'=> $historyId
         ));
-
         parent::assertResponse("Erro ao adicionar parte em um texto");
+    }
+
+    public static function getFullText($historyId){
+
+        parent::$client->request('POST','/history/getFullHistory',array(
+            'historyId'=> $historyId
+        ));
+        parent::assertResponse("Erro ao receber texto completo");
+
+        return parent::getResponseData()['fullHistory'];
     }
 }

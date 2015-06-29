@@ -22,8 +22,7 @@ class HistoryController extends Controller{
 
     /**
      * @Route("/create")
-     * @param name
-     * @param text
+     * @param ['name'] ['text']
      */
     public function create(Request $request){
 
@@ -36,8 +35,7 @@ class HistoryController extends Controller{
 
     /**
      * @Route("/addPart")
-     * @param text
-     * @param historyId
+     * @param ['text'] ['historyId']
      * @return
      */
     public function addPart(Request $request){
@@ -51,6 +49,7 @@ class HistoryController extends Controller{
 
     /**
      * @Route("/getFullHistory")
+     * @param ['historyId']
      * @return Response
      */
     public function getFullHistory(Request $request){
