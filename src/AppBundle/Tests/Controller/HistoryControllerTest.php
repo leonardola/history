@@ -28,7 +28,7 @@ class HistoryControllerTest extends LibHistory{
     public function testGetFullText(){
         $this->setUp();
         $historyId = $this->createNewHistory();
-        $this->testAddTextToHistory($historyId);
+        $this->addTextToHistory($historyId);
         $this->getFullText($historyId);
     }
 }
