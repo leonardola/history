@@ -3,6 +3,8 @@ history
 
 A Symfony project created on June 24, 2015, 12:32 am.
 
+Inicie uma historia e deixe seus amigos terminarem
+
 Testes
 =======
 Para rodar os testes basta usar:
