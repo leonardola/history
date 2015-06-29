@@ -8,7 +8,6 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Document\History;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -48,5 +47,18 @@ class HistoryController extends Controller{
         $this->get("history")->addTextToHistory($post);
 
         return new Response(json_encode(array('status'=>true)), 200);
+    }
+
+    /**
+     * @Route("/getFullHistory")
+     * @return Response
+     */
+    public function getFullHistory(Request $request){
+
+        $post = $request->request->all();
+
+        $fullHistory = $this->get('history')->getFullHistory($post['historyId']);
+
+        return new Response(json_encode(array('status'=>true,'fullHistory' => $fullHistory)), 200);
     }
 }

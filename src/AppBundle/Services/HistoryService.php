@@ -19,7 +19,7 @@ class HistoryService{
     }
 
     /**
-     * @param $historyData
+     * @param $historyData ['name'] ['text']
      * @return \AppBundle\Document\id
      */
     public function createHistory($historyData){
@@ -35,6 +35,10 @@ class HistoryService{
 
     public function addTextToHistory($historyData){
 
+        if(!$historyData){
+            throw new \Exception("Faltando argumentos para criar uma historia");
+        }
+
         $part = new HistoryPart();
         $part->setText($historyData['text']);
         $part->setUser("123");
@@ -46,6 +50,29 @@ class HistoryService{
         $history->addPart($part);
 
         $this->doctrine->flush();
+    }
+
+    public function getFullHistory($historyId){
+
+        $history = $this->doctrine->getRepository('AppBundle:History')->find($historyId);
+
+        $historyText = $history->getText();
+
+        foreach($history->getParts() as $part){
+
+            if(!$this->partBeginWithCommaOrPeriod($part)){
+                $historyText .= " ".$part->getText();
+            }else{
+                $historyText .= $part->getText();
+            }
+
+        }
+
+        return $historyText;
+    }
+
+    private function partBeginWithCommaOrPeriod($part){
+        return strpos($part->getText(),",") !== false || strpos($part->getText(),".") !== false;
     }
 
 }
