@@ -1,7 +1,7 @@
 <?php
 namespace AppBundle\Document;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
-
+use FOS\UserBundle\Model\User as BaseUser;
 /**
  * Created by IntelliJ IDEA.
  * User: leonardoalbuquerque
@@ -9,16 +9,13 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
  * Time: 02:06
  */
 
-
-
 /**
  * @MongoDB\Document
  */
-class User
+class User extends BaseUser
 {
-
     /**
-     * @MongoDB\Id
+     * @MongoDB\Id(strategy="auto")
      */
     protected $id;
 
@@ -30,60 +27,16 @@ class User
     /**
      * @MongoDB\String
      */
-    protected $password;
-
-
-    /**
-     * Get id
-     *
-     * @return id $id
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+    protected $token;
 
     /**
-     * Set name
-     *
-     * @param string $name
-     * @return self
+     * @MongoDB\String
      */
-    public function setName($name)
-    {
-        $this->name = $name;
-        return $this;
-    }
+    protected $userId;
 
-    /**
-     * Get name
-     *
-     * @return string $name
-     */
-    public function getName()
+    public function __construct()
     {
-        return $this->name;
-    }
-
-    /**
-     * Set password
-     *
-     * @param string $password
-     * @return self
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
-        return $this;
-    }
-
-    /**
-     * Get password
-     *
-     * @return string $password
-     */
-    public function getPassword()
-    {
-        return $this->password;
+        parent::__construct();
+        // your own logic
     }
 }

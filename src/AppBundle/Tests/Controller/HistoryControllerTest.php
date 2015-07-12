@@ -13,7 +13,6 @@ use AppBundle\Tests\Library\LibHistory;
 
 class HistoryControllerTest extends LibHistory{
 
-
     public function testCreate(){
         $this->setUp();
         $this->createNewHistory();

@@ -98,3 +98,14 @@ services:
     history:
         class:        AppBundle\Services\HistoryService
         arguments:    [@doctrine.odm.mongodb.document_manager]
+    facebook_login:
+        class:        AppBundle\Services\Facebook\Login
+        arguments:    [@doctrine.odm.mongodb.document_manager, %facebook.app_id%, %facebook.app_secret%]
+    get_request:
+        class:        AppBundle\Services\Requests\Get
+        arguments:    []
+
+    fos_user:
+        db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+        firewall_name: main
+        user_class: Acme\UserBundle\Entity\User
